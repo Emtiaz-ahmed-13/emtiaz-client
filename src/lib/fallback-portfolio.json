@@ -1,6 +1,6 @@
 {
   "profile": {
-    "id": "e571c03f-dc0b-4dfb-a314-085834992500",
+    "id": "34d5930f-dc48-4a44-bfc0-45be3849547c",
     "headline": "Full Stack Developer",
     "bio": "I build modern web applications with TypeScript, React, Node.js, NestJS, and PostgreSQL. Passionate about clean APIs, scalable backends, and polished user experiences.",
     "location": "Bangladesh",
@@ -13,12 +13,12 @@
     "email": "emtiaz2060@gmail.com",
     "phone": null,
     "available": true,
-    "createdAt": "2026-05-28T15:57:07.161Z",
-    "updatedAt": "2026-05-28T15:57:07.161Z"
+    "createdAt": "2026-05-28T17:07:29.869Z",
+    "updatedAt": "2026-05-28T17:07:29.869Z"
   },
   "projects": [
     {
-      "id": "d7b7ffc0-df88-4547-b42b-33b3c754f8c4",
+      "id": "1a4683fa-430b-42eb-8835-fd0c30745d09",
       "title": "PurrfectHub",
       "slug": "purrfecthub",
       "description": "PurrfectHub is a modern, feature-rich platform designed to connect cat lovers with their future feline companions. The product handles listings, adoption applications, donation flows, and an admin dashboard for shelter management.",
@@ -57,11 +57,11 @@
       "screenshots": [
         "https://i.ibb.co/8D7CfD5Q/pro.jpg"
       ],
-      "createdAt": "2026-05-28T15:57:07.197Z",
-      "updatedAt": "2026-05-28T15:57:07.197Z"
+      "createdAt": "2026-05-28T17:07:33.060Z",
+      "updatedAt": "2026-05-28T17:07:33.060Z"
     },
     {
-      "id": "c2f20ff1-c062-4688-8470-c8a0a3704495",
+      "id": "28085433-53cc-4fcf-b400-f3a5c4290a4e",
       "title": "SkillSync",
       "slug": "skillsync",
       "description": "SkillSync is a professional collaboration platform that connects freelancers with clients and removes the friction from running a project end-to-end. It bundles milestone tracking, protected escrow payments, real-time chat, a Kanban board, and time tracking into one cohesive product.",
@@ -100,11 +100,11 @@
       "screenshots": [
         "https://i.ibb.co/fYtLZFBN/Screenshot-2026-05-28-at-2-41-14-PM.png"
       ],
-      "createdAt": "2026-05-28T15:57:07.197Z",
-      "updatedAt": "2026-05-28T15:57:07.197Z"
+      "createdAt": "2026-05-28T17:07:33.060Z",
+      "updatedAt": "2026-05-28T17:07:33.060Z"
     },
     {
-      "id": "786104a5-98e5-48e8-81a2-c20d7768c876",
+      "id": "d7fc72cb-0457-49b4-ad29-c04261cfa0ba",
       "title": "TradeNest",
       "slug": "tradenest",
       "description": "TradeNest is a fully-typed e-commerce backend API designed to be the engine behind any storefront. It ships with auth, catalog, cart, orders, inventory, payments, and a complete observability layer \u2014 built to be deployed as a containerized service.",
@@ -144,118 +144,167 @@
         "Environment-based config with validation on startup"
       ],
       "screenshots": [],
-      "createdAt": "2026-05-28T15:57:07.197Z",
-      "updatedAt": "2026-05-28T15:57:07.197Z"
+      "createdAt": "2026-05-28T17:07:33.060Z",
+      "updatedAt": "2026-05-28T17:07:33.060Z"
+    },
+    {
+      "id": "2a360e03-2404-48a6-a237-4eaf1bce971b",
+      "title": "EduMentor AI",
+      "slug": "edumentor-ai",
+      "description": "EduMentor AI is an intelligent education platform that helps students learn faster through AI-driven tutoring, personalised study plans, and progress tracking. Built with the MERN stack (MongoDB \u00b7 Express \u00b7 React \u00b7 Node.js) in a clean modular architecture \u2014 designed for scale from day one. Frontend repo: github.com/Emtiaz-ahmed-13/edumentor_ai_client \u00b7 Backend repo: github.com/Emtiaz-ahmed-13/edumentor_ai_server",
+      "shortDesc": "AI-powered learning platform \u2014 led a 4-person team end-to-end on the MERN stack",
+      "techStack": [
+        "React 18",
+        "Vite",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Mongoose",
+        "JWT",
+        "bcrypt"
+      ],
+      "imageUrl": "https://i.ibb.co/HDLLdDpR/Screenshot-2026-05-28-at-11-01-38-PM.png",
+      "liveUrl": "https://edumentor-ai-client.vercel.app/",
+      "githubUrl": "https://github.com/Emtiaz-ahmed-13/edumentor_ai_client",
+      "featured": true,
+      "published": true,
+      "order": 4,
+      "problem": "Students working through free educational content hit two consistent walls \u2014 information overload (too many topics, no clear path) and isolation (no one to ask when stuck at 2 AM). Existing solutions are either expensive 1:1 tutoring or generic chatbots that don't remember context or track your weak spots. We set out to build an AI mentor that adapts to each learner \u2014 explains concepts, generates quizzes, and tracks progress \u2014 while staying affordable for students in emerging markets.",
+      "approach": "I led a 4-engineer team (2 frontend, 2 backend) and split the work along clear module boundaries \u2014 each engineer owned 1\u20132 features end-to-end (Auth, User, Tutor, Quiz). We standardised on a strict Module Pattern on the backend (controller / service / route / model per feature) so people could ship in parallel without merge conflicts.\n\nMy direct responsibilities as lead: system architecture, API contract design (shared Postman collection committed to the repo as the source of truth), JWT auth flow with access + refresh token rotation, PR review across both repos, and the Vercel deployment pipeline for client + server. I set the engineering rituals \u2014 daily 15-min async Discord stand-ups, a written 'definition of done' for PRs (lint pass + manual test + screenshot), and pair-programming sessions for the trickier auth and CORS work.\n\nWe let the frontend start integrating against the Postman contract before the backend was 'finished' \u2014 that overlap cut total delivery time by roughly 30%.",
+      "outcome": "Shipped a deployed MVP in 6 weeks with full authentication, user profiles, AI tutoring chat, and quiz generation. The team merged 100+ PRs across both repos with zero production rollbacks. Backend exposes 20+ documented endpoints (Postman collection lives in the repo) with consistent response envelopes and a single global error handler. Code is structured so a teammate can scaffold a new feature module in ~30 minutes using the existing template \u2014 onboarding the 4th engineer who joined late took half a day, not a week.",
+      "challenges": "The hardest part wasn't the code \u2014 it was coordinating four engineers with different schedules, skill levels, and time zones. Three concrete things I had to solve as lead:\n\n1) **Merge conflict hell** in week 2 \u2014 fixed by enforcing strict module boundaries (one engineer = one feature folder) and a 'PR-per-module' policy.\n\n2) **A nasty CORS deadlock** between client (Vercel) and server (Vercel) \u2014 debugged across 3 environments, pinned it to a missing `credentials: true` plus an exact origin allowlist, then documented the fix so the team internalised it.\n\n3) **Uneven contribution** \u2014 addressed by pairing the more experienced engineers with the juniors on the harder modules (auth refresh, error handler) so knowledge actually transferred instead of bottlenecking on me.",
+      "role": "Team Lead \u00b7 Full Stack Engineer",
+      "duration": "6 weeks \u00b7 4-person team",
+      "features": [
+        "MERN stack (MongoDB \u00b7 Express \u00b7 React \u00b7 Node) with strict Module Pattern",
+        "Modular architecture \u2014 Auth and User as self-contained features (controller / service / route / model)",
+        "JWT authentication with access + refresh token rotation",
+        "Password hashing with bcrypt (configurable salt rounds)",
+        "Centralised global error handler with consistent response envelope",
+        "Standardised `sendResponse` helper for every endpoint",
+        "Postman collection committed to the repo as the team API contract",
+        "CORS-hardened API ready for multi-origin frontends",
+        "Environment-based config with startup validation",
+        "Vercel deployment for both client and server (separate projects)",
+        "Team-led delivery \u2014 4 engineers shipping in parallel, 100+ PRs, zero rollbacks"
+      ],
+      "screenshots": [
+        "https://i.ibb.co/HDLLdDpR/Screenshot-2026-05-28-at-11-01-38-PM.png"
+      ],
+      "createdAt": "2026-05-28T17:07:33.060Z",
+      "updatedAt": "2026-05-28T17:07:33.060Z"
     }
   ],
   "skills": [
     {
-      "id": "abf75390-4102-44bd-a7bc-e141585ad524",
+      "id": "3ab9b3fb-d85f-485a-b0fa-b19a3ae86d1b",
       "name": "TypeScript",
       "category": "LANGUAGE",
       "level": 90,
       "order": 1,
-      "createdAt": "2026-05-28T15:57:07.176Z",
-      "updatedAt": "2026-05-28T15:57:07.176Z"
+      "createdAt": "2026-05-28T17:07:30.219Z",
+      "updatedAt": "2026-05-28T17:07:30.219Z"
     },
     {
-      "id": "705acf0d-99a8-43ba-9e55-f492262490d4",
+      "id": "bfb8a3c0-ec16-42ac-a72b-85547bd2b02f",
       "name": "JavaScript",
       "category": "LANGUAGE",
       "level": 90,
       "order": 2,
-      "createdAt": "2026-05-28T15:57:07.176Z",
-      "updatedAt": "2026-05-28T15:57:07.176Z"
+      "createdAt": "2026-05-28T17:07:30.219Z",
+      "updatedAt": "2026-05-28T17:07:30.219Z"
     },
     {
-      "id": "0803f94f-12b6-460c-9c81-d56e80547cdf",
+      "id": "b42013a4-a8a3-4bb4-9010-e441ed377ffa",
       "name": "React",
       "category": "FRAMEWORK",
       "level": 85,
       "order": 3,
-      "createdAt": "2026-05-28T15:57:07.176Z",
-      "updatedAt": "2026-05-28T15:57:07.176Z"
+      "createdAt": "2026-05-28T17:07:30.219Z",
+      "updatedAt": "2026-05-28T17:07:30.219Z"
     },
     {
-      "id": "1dfc070e-8c7f-4bd1-965a-3bd459abebb5",
+      "id": "406a64ae-14e6-4ea0-ad32-e0a27593b9cf",
       "name": "Next.js",
       "category": "FRAMEWORK",
       "level": 85,
       "order": 4,
-      "createdAt": "2026-05-28T15:57:07.176Z",
-      "updatedAt": "2026-05-28T15:57:07.176Z"
+      "createdAt": "2026-05-28T17:07:30.219Z",
+      "updatedAt": "2026-05-28T17:07:30.219Z"
     },
     {
-      "id": "2248912a-07a3-44c5-ad52-3d0f98775237",
+      "id": "d55acd6a-1e3a-42cb-b225-8a8bb18c1339",
       "name": "Node.js",
       "category": "FRAMEWORK",
       "level": 90,
       "order": 5,
-      "createdAt": "2026-05-28T15:57:07.176Z",
-      "updatedAt": "2026-05-28T15:57:07.176Z"
+      "createdAt": "2026-05-28T17:07:30.219Z",
+      "updatedAt": "2026-05-28T17:07:30.219Z"
     },
     {
-      "id": "b06ab928-b83a-456c-ad37-f99776ce6964",
+      "id": "6a1c3ad5-a7f7-42e2-a87d-e312c7db917d",
       "name": "NestJS",
       "category": "FRAMEWORK",
       "level": 85,
       "order": 6,
-      "createdAt": "2026-05-28T15:57:07.176Z",
-      "updatedAt": "2026-05-28T15:57:07.176Z"
+      "createdAt": "2026-05-28T17:07:30.219Z",
+      "updatedAt": "2026-05-28T17:07:30.219Z"
     },
     {
-      "id": "d6238fb5-b3ed-4c1c-a60f-739af94a6688",
+      "id": "8bae867c-1867-44be-9122-c3bb863e726d",
       "name": "Express.js",
       "category": "FRAMEWORK",
       "level": 85,
       "order": 7,
-      "createdAt": "2026-05-28T15:57:07.176Z",
-      "updatedAt": "2026-05-28T15:57:07.176Z"
+      "createdAt": "2026-05-28T17:07:30.219Z",
+      "updatedAt": "2026-05-28T17:07:30.219Z"
     },
     {
-      "id": "b0c3ba13-66be-4e46-83e1-07440db80515",
+      "id": "915bd166-1b87-486d-b9e9-b2fe2f74d320",
       "name": "PostgreSQL",
       "category": "DATABASE",
       "level": 85,
       "order": 8,
-      "createdAt": "2026-05-28T15:57:07.176Z",
-      "updatedAt": "2026-05-28T15:57:07.176Z"
+      "createdAt": "2026-05-28T17:07:30.219Z",
+      "updatedAt": "2026-05-28T17:07:30.219Z"
     },
     {
-      "id": "883a6118-9356-46ea-ba27-9c0e8a97bb9c",
+      "id": "5aaeb33b-d74c-42f8-82eb-81c263c8f0cb",
       "name": "Prisma",
       "category": "TOOL",
       "level": 90,
       "order": 9,
-      "createdAt": "2026-05-28T15:57:07.176Z",
-      "updatedAt": "2026-05-28T15:57:07.176Z"
+      "createdAt": "2026-05-28T17:07:30.219Z",
+      "updatedAt": "2026-05-28T17:07:30.219Z"
     },
     {
-      "id": "7c5949c1-ed51-4115-b4a9-6c2983285b45",
+      "id": "0388632d-f7f5-408a-93ea-0fe2a964417e",
       "name": "Docker",
       "category": "TOOL",
       "level": 80,
       "order": 10,
-      "createdAt": "2026-05-28T15:57:07.176Z",
-      "updatedAt": "2026-05-28T15:57:07.176Z"
+      "createdAt": "2026-05-28T17:07:30.219Z",
+      "updatedAt": "2026-05-28T17:07:30.219Z"
     }
   ],
   "experiences": [
     {
-      "id": "fefff011-0d40-4cfb-8987-c14cb5c8576a",
+      "id": "266514b0-027d-4c72-bd00-29e8b2552acd",
       "company": "Independent \u00b7 Self-employed",
       "position": "Full Stack Developer",
-      "description": "Designing and shipping production-grade full-stack web apps end-to-end. Owned the full surface area \u2014 product scoping, system architecture, backend (Node.js, Express, NestJS, PostgreSQL, Prisma), frontend (Next.js, TypeScript, Tailwind), and Docker-based deployment.\n\nNotable builds: PurrfectHub (adoption platform with multi-step applications), SkillSync (freelancer \u2194 client collaboration hub with escrow + Kanban), and TradeNest (production-grade e-commerce backend API with Swagger docs, rate limiting, and security hardening).",
+      "description": "Designing and shipping production-grade full-stack web apps end-to-end. Owned the full surface area \u2014 product scoping, system architecture, backend (Node.js, Express, NestJS, PostgreSQL, Prisma, MongoDB), frontend (Next.js, React, TypeScript, Tailwind), and Docker- / Vercel-based deployment.\n\nNotable builds:\n\u2022 PurrfectHub \u2014 adoption platform with multi-step applications.\n\u2022 SkillSync \u2014 freelancer \u2194 client collaboration hub with escrow + Kanban.\n\u2022 TradeNest \u2014 production-grade e-commerce backend API with Swagger docs, rate limiting, and security hardening.\n\u2022 EduMentor AI \u2014 led a 4-engineer team on a MERN-stack learning platform; owned architecture, API contract, JWT auth flow, PR review, and the Vercel pipeline. Shipped MVP in 6 weeks with 100+ PRs across two repos and zero production rollbacks.",
       "location": "Dhaka, Bangladesh",
       "startDate": "2024-01-01T00:00:00.000Z",
       "endDate": null,
       "current": true,
       "order": 1,
-      "createdAt": "2026-05-28T15:57:07.234Z",
-      "updatedAt": "2026-05-28T15:57:07.234Z"
+      "createdAt": "2026-05-28T17:07:37.983Z",
+      "updatedAt": "2026-05-28T17:07:37.983Z"
     },
     {
-      "id": "297fce30-7602-4910-8df8-f78e736983b9",
+      "id": "ea691347-2c79-4b80-9221-d5fc66206203",
       "company": "Self-Directed Learning",
       "position": "Backend & Distributed Systems",
       "description": "Currently deep-diving into NestJS, microservices architecture, message brokers (Redis Streams, RabbitMQ), event-driven patterns, and distributed system fundamentals. Building small experimental services to internalize patterns before applying them in client work.",
@@ -264,11 +313,11 @@
       "endDate": null,
       "current": true,
       "order": 2,
-      "createdAt": "2026-05-28T15:57:07.234Z",
-      "updatedAt": "2026-05-28T15:57:07.234Z"
+      "createdAt": "2026-05-28T17:07:37.983Z",
+      "updatedAt": "2026-05-28T17:07:37.983Z"
     },
     {
-      "id": "ef5b9045-aaac-45e6-b290-0f845112b28b",
+      "id": "e9438ca9-0293-47dd-8123-e5360e05f3e0",
       "company": "Open Source \u00b7 GitHub",
       "position": "Contributor",
       "description": "Active on GitHub building and maintaining personal open-source repositories. Engaging with the JavaScript/TypeScript ecosystem through issues, discussions, and small PRs to upstream projects I use.",
@@ -277,11 +326,11 @@
       "endDate": null,
       "current": true,
       "order": 3,
-      "createdAt": "2026-05-28T15:57:07.234Z",
-      "updatedAt": "2026-05-28T15:57:07.234Z"
+      "createdAt": "2026-05-28T17:07:37.983Z",
+      "updatedAt": "2026-05-28T17:07:37.983Z"
     },
     {
-      "id": "5924d27b-cf58-45e8-8090-b6ec65565f37",
+      "id": "ecd16223-43e8-4925-8b01-03b01c4582e1",
       "company": "BRAC University Computer Club (BUCC)",
       "position": "General Member",
       "description": "Active member of BUCC \u2014 BRAC University's computer science and technology club. Participating in workshops, programming contests, and community-building events organised by the club.",
@@ -290,11 +339,11 @@
       "endDate": null,
       "current": true,
       "order": 4,
-      "createdAt": "2026-05-28T15:57:07.234Z",
-      "updatedAt": "2026-05-28T15:57:07.234Z"
+      "createdAt": "2026-05-28T17:07:37.983Z",
+      "updatedAt": "2026-05-28T17:07:37.983Z"
     },
     {
-      "id": "c08a4ad2-44f2-45f1-b0ca-b42d8cb2da01",
+      "id": "f385ddab-7844-4ebf-b1cd-82e0a2627e0e",
       "company": "BRAC University Chess Club",
       "position": "Senior Executive",
       "description": "Senior Executive of the BRAC University Chess Club \u2014 helping organise tournaments, training sessions, and inter-university chess events. Sharpening strategic thinking through regular play and competitive participation.",
@@ -303,13 +352,13 @@
       "endDate": null,
       "current": true,
       "order": 5,
-      "createdAt": "2026-05-28T15:57:07.234Z",
-      "updatedAt": "2026-05-28T15:57:07.234Z"
+      "createdAt": "2026-05-28T17:07:37.983Z",
+      "updatedAt": "2026-05-28T17:07:37.983Z"
     }
   ],
   "education": [
     {
-      "id": "f20c19b7-0af9-4a36-b2e2-d08cb20e68b9",
+      "id": "cfad814b-3984-4ae9-8a4f-1a13f62ac95c",
       "institution": "BRAC University",
       "degree": "Bachelor of Science",
       "field": "Computer Science",
@@ -318,13 +367,13 @@
       "endDate": null,
       "current": true,
       "order": 1,
-      "createdAt": "2026-05-28T15:57:07.219Z",
-      "updatedAt": "2026-05-28T15:57:07.219Z"
+      "createdAt": "2026-05-28T17:07:36.501Z",
+      "updatedAt": "2026-05-28T17:07:36.501Z"
     }
   ],
   "achievements": [
     {
-      "id": "e3046e7b-df0a-461b-bf5b-a8d1fc61e4c6",
+      "id": "73759541-8119-4d1a-957d-808ff2bbf2a0",
       "title": "Bit Battles Final Round 2025",
       "organizer": "BRAC University Computer Club \u00d7 Phitron",
       "category": "CONTEST",
@@ -343,11 +392,11 @@
       ],
       "order": 1,
       "published": true,
-      "createdAt": "2026-05-28T15:57:07.251Z",
-      "updatedAt": "2026-05-28T15:57:07.251Z"
+      "createdAt": "2026-05-28T17:07:39.675Z",
+      "updatedAt": "2026-05-28T17:07:39.675Z"
     },
     {
-      "id": "4fd4f76d-078d-444e-b840-46116ed8f74e",
+      "id": "b11e1cf5-7854-4c3e-8e2f-2263e8a90b3c",
       "title": "Web Dev Hackathon 2025",
       "organizer": "North South University \u00d7 Programming Hero",
       "category": "HACKATHON",
@@ -365,11 +414,11 @@
       ],
       "order": 2,
       "published": true,
-      "createdAt": "2026-05-28T15:57:07.251Z",
-      "updatedAt": "2026-05-28T15:57:07.251Z"
+      "createdAt": "2026-05-28T17:07:39.675Z",
+      "updatedAt": "2026-05-28T17:07:39.675Z"
     },
     {
-      "id": "dea7724a-83ef-4d53-bca0-bfcffc8a46e5",
+      "id": "604a757b-419f-499d-9bc4-fcad401d0d5a",
       "title": "HackerRank SQL (Intermediate) Certificate",
       "organizer": "HackerRank",
       "category": "CERTIFICATE",
@@ -386,11 +435,11 @@
       ],
       "order": 3,
       "published": true,
-      "createdAt": "2026-05-28T15:57:07.251Z",
-      "updatedAt": "2026-05-28T15:57:07.251Z"
+      "createdAt": "2026-05-28T17:07:39.675Z",
+      "updatedAt": "2026-05-28T17:07:39.675Z"
     },
     {
-      "id": "990a300e-a962-4657-a377-435a712fec91",
+      "id": "39184255-6ee2-486f-8090-121f7076e51f",
       "title": "Programming Hero \u2014 Level 2 (Web Development)",
       "organizer": "Programming Hero",
       "category": "COURSE",
@@ -407,8 +456,8 @@
       ],
       "order": 4,
       "published": true,
-      "createdAt": "2026-05-28T15:57:07.251Z",
-      "updatedAt": "2026-05-28T15:57:07.251Z"
+      "createdAt": "2026-05-28T17:07:39.675Z",
+      "updatedAt": "2026-05-28T17:07:39.675Z"
     }
   ]
 }
