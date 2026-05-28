@@ -17,6 +17,10 @@ A Next.js 16 portfolio that pulls **live data** from a companion REST API, rende
 ![Radix](https://img.shields.io/badge/Radix-UI-161618?logo=radixui&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer-Motion-0055ff?logo=framer&logoColor=white)
 
+<br />
+
+[![Preview](https://i.ibb.co/yFX2c8kc/Screenshot-2026-05-28-at-11-16-07-PM.png)](https://emtiaz-client.vercel.app)
+
 </div>
 
 ---
@@ -51,7 +55,9 @@ When the API is unreachable (offline dev, cold build on Vercel, etc.) the site f
 - **Live site:** https://emtiaz-client.vercel.app
 - **API:** https://emtiaz-server.vercel.app/api/v1/portfolio
 
-> Add screenshots to `/public/screenshots/` and reference them here once captured.
+<a href="https://emtiaz-client.vercel.app">
+  <img src="https://i.ibb.co/yFX2c8kc/Screenshot-2026-05-28-at-11-16-07-PM.png" alt="emtiaz-client preview" />
+</a>
 
 ## Highlights
 
