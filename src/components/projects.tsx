@@ -2,22 +2,45 @@
 
 import { motion } from "framer-motion";
 import { Folder, Sparkles } from "lucide-react";
+import Link from "next/link";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Section } from "@/components/ui/section";
+import { SectionLabel } from "@/components/ui/section-label";
 import { Project } from "@/types/portfolio";
 
+const HOME_LIMIT = 3;
+
 export function Projects({ projects }: { projects: Project[] }) {
-  const featured = projects[0];
-  const rest = projects.slice(1);
+  const items = projects ?? [];
+  const visible = items.slice(0, HOME_LIMIT);
+  const hasMore = items.length > HOME_LIMIT;
+  const featured = visible[0];
+  const rest = visible.slice(1);
 
   return (
     <Section id="projects">
       <SectionHeading
         index="02 / Work"
         title="Selected projects."
-        subtitle={`${projects.length} production-grade builds — full-stack systems, APIs, and product interfaces.`}
+        subtitle={`${items.length} production-grade builds — full-stack systems, APIs, and product interfaces.`}
+        action={
+          hasMore ? (
+            <Link
+              href="/projects"
+              className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-[13px] font-medium text-foreground transition hover:border-border-strong hover:bg-background"
+            >
+              See all {items.length} projects
+              <span
+                aria-hidden
+                className="transition group-hover:translate-x-0.5"
+              >
+                →
+              </span>
+            </Link>
+          ) : null
+        }
       />
 
       <motion.div
@@ -29,14 +52,15 @@ export function Projects({ projects }: { projects: Project[] }) {
       >
         <Badge variant="outline" className="gap-1.5">
           <Folder className="h-3 w-3" />
-          {projects.length} Projects
+          {items.length} Projects
         </Badge>
         <Badge variant="default" className="gap-1.5">
           <Sparkles className="h-3 w-3" />
-          {projects.filter((p) => p.featured).length} Featured
+          {items.filter((p) => p.featured).length} Featured
         </Badge>
         <Badge variant="muted">
-          {Array.from(new Set(projects.flatMap((p) => p.techStack))).length} Technologies
+          {Array.from(new Set(items.flatMap((p) => p.techStack))).length}{" "}
+          Technologies
         </Badge>
       </motion.div>
 
@@ -53,6 +77,34 @@ export function Projects({ projects }: { projects: Project[] }) {
           />
         ))}
       </div>
+
+      {hasMore && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-card/60 px-6 py-5 backdrop-blur-sm"
+        >
+          <div>
+            <SectionLabel>More work</SectionLabel>
+            <p className="mt-1.5 text-sm text-muted-strong">
+              {items.length - HOME_LIMIT} more{" "}
+              {items.length - HOME_LIMIT === 1 ? "project" : "projects"} —
+              backend APIs, full-stack apps, and open-source experiments.
+            </p>
+          </div>
+          <Link
+            href="/projects"
+            className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-[13px] font-medium text-background transition hover:gap-3"
+          >
+            See everything
+            <span aria-hidden className="transition group-hover:translate-x-0.5">
+              →
+            </span>
+          </Link>
+        </motion.div>
+      )}
     </Section>
   );
 }

@@ -29,7 +29,7 @@ export function Skills({ skills }: { skills: Skill[] }) {
   return (
     <Section id="skills">
       <SectionHeading
-        index="03 / Stack"
+        index="04 / Stack"
         title="Tools I build with."
         subtitle="A snapshot of the languages, frameworks, and infrastructure I work with daily."
       />

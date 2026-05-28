@@ -1,5 +1,12 @@
-import { ApiResponse, PortfolioData, Project } from "@/types/portfolio";
+import {
+  ApiResponse,
+  BlogPost,
+  PortfolioData,
+  Profile,
+  Project,
+} from "@/types/portfolio";
 import fallbackData from "./fallback-portfolio.json";
+import { resolveImageUrl } from "./image-url";
 
 const API_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001/api/v1";
@@ -11,6 +18,35 @@ const API_URL =
  */
 const FALLBACK_PORTFOLIO = fallbackData as unknown as PortfolioData;
 
+// Profile fields the live backend doesn't always populate yet (e.g. before re-seed).
+// Merged on top of whatever the API returns so the UI always has these.
+const PROFILE_DEFAULTS: Partial<Profile> = {
+  avatarUrl: "https://i.ibb.co/JW5D3rdH/p.jpg",
+  websiteUrl: "https://emtiaz-client.vercel.app/",
+};
+
+function withProfileDefaults(data: PortfolioData): PortfolioData {
+  return {
+    ...data,
+    profile: {
+      ...data.profile,
+      avatarUrl: data.profile.avatarUrl ?? PROFILE_DEFAULTS.avatarUrl ?? null,
+      websiteUrl: data.profile.websiteUrl ?? PROFILE_DEFAULTS.websiteUrl ?? null,
+    },
+    posts: (data.posts ?? []).map((post) => ({
+      ...post,
+      coverUrl: resolveImageUrl(post.coverUrl),
+    })),
+  };
+}
+
+function withResolvedBlogPost(post: BlogPost): BlogPost {
+  return {
+    ...post,
+    coverUrl: resolveImageUrl(post.coverUrl),
+  };
+}
+
 export async function getPortfolio(): Promise<PortfolioData> {
   try {
     const res = await fetch(`${API_URL}/portfolio`, {
@@ -19,10 +55,10 @@ export async function getPortfolio(): Promise<PortfolioData> {
     });
     if (!res.ok) throw new Error("Failed to load portfolio data");
     const json: ApiResponse<PortfolioData> = await res.json();
-    return json.data;
+    return withProfileDefaults(json.data);
   } catch (err) {
     console.warn("[api] Portfolio fetch failed, using fallback snapshot:", err);
-    return FALLBACK_PORTFOLIO;
+    return withProfileDefaults(FALLBACK_PORTFOLIO);
   }
 }
 
@@ -56,6 +92,43 @@ export async function getAllProjects(): Promise<Project[]> {
   } catch (err) {
     console.warn("[api] Projects fetch failed, using fallback:", err);
     return FALLBACK_PORTFOLIO.projects;
+  }
+}
+
+export async function getBlogPosts(): Promise<BlogPost[]> {
+  try {
+    const res = await fetch(`${API_URL}/blog?limit=20`, {
+      next: { revalidate: 60 },
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) throw new Error("Failed to load blog posts");
+    const json: ApiResponse<BlogPost[]> = await res.json();
+    return json.data.map(withResolvedBlogPost);
+  } catch (err) {
+    console.warn("[api] Blog fetch failed, using fallback snapshot:", err);
+    return FALLBACK_PORTFOLIO.posts ?? [];
+  }
+}
+
+export async function getBlogPostBySlug(
+  slug: string
+): Promise<BlogPost | null> {
+  try {
+    const res = await fetch(`${API_URL}/blog/slug/${slug}`, {
+      next: { revalidate: 60 },
+      signal: AbortSignal.timeout(8000),
+    });
+    if (res.status === 404) return null;
+    if (!res.ok) throw new Error("Failed to load blog post");
+    const json: ApiResponse<BlogPost> = await res.json();
+    return withResolvedBlogPost(json.data);
+  } catch (err) {
+    console.warn("[api] Blog post fetch failed, using fallback:", err);
+    return (
+      (FALLBACK_PORTFOLIO.posts ?? [])
+        .map(withResolvedBlogPost)
+        .find((p) => p.slug === slug) ?? null
+    );
   }
 }
 

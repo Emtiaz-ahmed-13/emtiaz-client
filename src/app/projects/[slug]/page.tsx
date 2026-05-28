@@ -73,7 +73,11 @@ export default async function ProjectPage({
     <>
       <Navbar name={portfolio?.profile.headline || "Emtiaz Ahmed"} />
       <ProjectCaseStudy project={project} prev={prev} next={next} />
-      <Footer name="Emtiaz Ahmed" year={new Date().getFullYear()} />
+      <Footer
+        name="Emtiaz Ahmed"
+        year={new Date().getFullYear()}
+        profile={portfolio?.profile}
+      />
     </>
   );
 }

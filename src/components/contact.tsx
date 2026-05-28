@@ -40,7 +40,7 @@ export function Contact({ profile }: { profile: Profile }) {
   return (
     <Section id="contact">
       <SectionHeading
-        index="04 / Contact"
+        index="08 / Contact"
         title="Let's build something."
         subtitle="Got a project, role, or idea? Drop a message and I'll reply within 24 hours."
       />

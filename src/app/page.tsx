@@ -1,5 +1,6 @@
 import { About } from "@/components/about";
 import { Achievements } from "@/components/achievements";
+import { Blog } from "@/components/blog";
 import { CodingProfiles } from "@/components/coding-profiles";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
@@ -42,9 +43,11 @@ export default async function Home() {
         <SectionDivider />
         <Achievements achievements={data.achievements ?? []} />
         <SectionDivider />
+        <Blog posts={data.posts ?? []} />
+        <SectionDivider />
         <Contact profile={data.profile} />
       </main>
-      <Footer name={name} year={year} />
+      <Footer name={name} year={year} profile={data.profile} />
     </>
   );
 }

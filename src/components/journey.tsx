@@ -146,7 +146,7 @@ export function Journey({
   return (
     <Section id="journey">
       <SectionHeading
-        index="04 / Journey"
+        index="03 / Journey"
         title="Where I've been."
         subtitle="Education, work, and the bridge between them — built one project at a time."
       />

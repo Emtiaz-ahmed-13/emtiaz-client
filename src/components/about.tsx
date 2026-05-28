@@ -2,15 +2,15 @@
 
 import { SectionHeading } from "@/components/section-heading";
 import { Card } from "@/components/ui/card";
-import { SectionLabel } from "@/components/ui/section-label";
 import { Section } from "@/components/ui/section";
+import { SectionLabel } from "@/components/ui/section-label";
 import { Profile } from "@/types/portfolio";
 
 const stats = [
   { label: "Years coding", value: "3+" },
-  { label: "Projects shipped", value: "10+" },
+  { label: "Projects shipped", value: "5+" },
   { label: "Tech stacks", value: "8+" },
-  { label: "Coffee per day", value: "∞" },
+  { label: "Coffee/tea per day", value: "∞" },
 ];
 
 export function About({ profile }: { profile: Profile }) {
@@ -24,7 +24,7 @@ export function About({ profile }: { profile: Profile }) {
     profile.linkedinUrl && {
       label: "LinkedIn",
       href: profile.linkedinUrl,
-      value: "in/emtiazahmed",
+      value: "in/emtiaz-ahmed",
     },
     profile.websiteUrl && {
       label: "Web",

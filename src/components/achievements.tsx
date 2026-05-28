@@ -99,7 +99,7 @@ export function Achievements({ achievements }: { achievements: Achievement[] }) 
   return (
     <Section id="highlights">
       <SectionHeading
-        index="06 / Highlights"
+        index="06 / Wins"
         title="Wins, papers, & proofs."
         subtitle="Hackathons, programming contests, certifications, and courses — the receipts behind the resume."
       />

@@ -94,6 +94,25 @@ export type Achievement = {
   published: boolean;
 };
 
+export type BlogPostStatus = "DRAFT" | "PUBLISHED";
+
+export type BlogPost = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content?: string | null;
+  coverUrl?: string | null;
+  tags: string[];
+  readMinutes: number;
+  publishedAt: string;
+  status?: BlogPostStatus;
+  featured?: boolean;
+  order?: number;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
 export type PortfolioData = {
   profile: Profile;
   projects: Project[];
@@ -101,6 +120,7 @@ export type PortfolioData = {
   experiences: Experience[];
   education: Education[];
   achievements: Achievement[];
+  posts: BlogPost[];
 };
 
 export type ApiResponse<T> = {
