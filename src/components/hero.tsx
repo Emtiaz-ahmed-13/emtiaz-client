@@ -121,7 +121,7 @@ export function Hero({ profile, name }: { profile: Profile; name: string }) {
           </span>
         </motion.div>
 
-        <h1 className="text-[14vw] font-semibold leading-[0.92] tracking-[-0.04em] sm:text-[10vw] lg:text-[8.5rem]">
+        <h1 className="text-[12vw] font-semibold leading-[1] tracking-[-0.04em] sm:text-[8vw] lg:text-[6.5rem]">
           <span className="block overflow-hidden">
             {chars.map((c, i) => (
               <span
@@ -133,7 +133,7 @@ export function Hero({ profile, name }: { profile: Profile; name: string }) {
               </span>
             ))}
           </span>
-          <span className="mt-2 block overflow-hidden">
+          <span className="mt-3 block overflow-hidden">
             <motion.span
               initial={{ y: "100%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
