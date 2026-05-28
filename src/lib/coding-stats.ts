@@ -1,15 +1,10 @@
-/**
- * Server-side fetchers for competitive programming profiles.
- * Supports both ISR-cached (default) and live (no-cache) modes.
- *  - SSR initial render: cached (revalidate: 3600s)
- *  - Client-side refresh button: fresh (cache: no-store) via /api/coding-stats
- */
-
 const REVALIDATE = 3600;
 
 type FetchOpts = { fresh?: boolean };
 const cacheInit = (fresh?: boolean): RequestInit =>
-  fresh ? { cache: "no-store" } : { next: { revalidate: REVALIDATE } } as RequestInit;
+  fresh
+    ? { cache: "no-store" }
+    : ({ next: { revalidate: REVALIDATE } } as RequestInit);
 
 export const CODING_PROFILES = {
   leetcode: {
@@ -57,7 +52,9 @@ export type CodingStats = {
   codechef: CodeChefStats | null;
 };
 
-async function fetchLeetCode(opts: FetchOpts = {}): Promise<LeetCodeStats | null> {
+async function fetchLeetCode(
+  opts: FetchOpts = {},
+): Promise<LeetCodeStats | null> {
   try {
     const res = await fetch("https://leetcode.com/graphql", {
       method: "POST",
@@ -93,11 +90,13 @@ async function fetchLeetCode(opts: FetchOpts = {}): Promise<LeetCodeStats | null
   }
 }
 
-async function fetchCodeforces(opts: FetchOpts = {}): Promise<CodeforcesStats | null> {
+async function fetchCodeforces(
+  opts: FetchOpts = {},
+): Promise<CodeforcesStats | null> {
   try {
     const res = await fetch(
       `https://codeforces.com/api/user.info?handles=${CODING_PROFILES.codeforces.handle}`,
-      cacheInit(opts.fresh)
+      cacheInit(opts.fresh),
     );
     if (!res.ok) return null;
     const json = await res.json();
@@ -115,14 +114,16 @@ async function fetchCodeforces(opts: FetchOpts = {}): Promise<CodeforcesStats | 
   }
 }
 
-async function fetchCodeChef(opts: FetchOpts = {}): Promise<CodeChefStats | null> {
+async function fetchCodeChef(
+  opts: FetchOpts = {},
+): Promise<CodeChefStats | null> {
   try {
     const res = await fetch(
       `https://www.codechef.com/users/${CODING_PROFILES.codechef.username}`,
       {
         headers: { "User-Agent": "Mozilla/5.0 (portfolio-stats)" },
         ...cacheInit(opts.fresh),
-      }
+      },
     );
     if (!res.ok) return null;
     const html = await res.text();
@@ -135,15 +136,15 @@ async function fetchCodeChef(opts: FetchOpts = {}): Promise<CodeChefStats | null
     const maxRatingStr = block.match(/Highest Rating\s*(\d+)/)?.[1];
     const starsCount = (block.match(/&#9733;/g) ?? []).length;
     const globalRankStr = block.match(
-      /ratings\/all"[^>]*>\s*<strong>\s*(\d+)/
+      /ratings\/all"[^>]*>\s*<strong>\s*(\d+)/,
     )?.[1];
     const countryRankStr = block.match(
-      /Bangladesh[^>]*>\s*<strong>\s*(\d+)/
+      /Bangladesh[^>]*>\s*<strong>\s*(\d+)/,
     )?.[1];
 
     const solvedStr = html.match(/Total Problems Solved:\s*(\d+)/)?.[1];
     const contestsStr = html.match(
-      /No\. of Contests Participated:[\s\S]*?\*\*([0-9]+)\*\*|No\. of Contests Participated:[^0-9]*(\d+)/
+      /No\. of Contests Participated:[\s\S]*?\*\*([0-9]+)\*\*|No\. of Contests Participated:[^0-9]*(\d+)/,
     );
     const contests = contestsStr
       ? parseInt(contestsStr[1] || contestsStr[2] || "0")
@@ -167,7 +168,7 @@ async function fetchCodeChef(opts: FetchOpts = {}): Promise<CodeChefStats | null
 }
 
 export async function getCodingStats(
-  opts: FetchOpts = {}
+  opts: FetchOpts = {},
 ): Promise<CodingStats> {
   const [leetcode, codeforces, codechef] = await Promise.all([
     fetchLeetCode(opts),
