@@ -24,7 +24,7 @@ export function About({ profile }: { profile: Profile }) {
     profile.linkedinUrl && {
       label: "LinkedIn",
       href: profile.linkedinUrl,
-      value: "in/emtiaz-ahmed-2892871a2",
+      value: profile.linkedinUrl,
     },
     profile.websiteUrl && {
       label: "Web",
@@ -63,7 +63,7 @@ export function About({ profile }: { profile: Profile }) {
               rel="noopener noreferrer"
               tilt
               delay={i * 0.06 + 0.2}
-              className="group flex items-center justify-between p-5!"
+              className="group flex items-center justify-between !p-5"
             >
               <div>
                 <SectionLabel>{link.label}</SectionLabel>
