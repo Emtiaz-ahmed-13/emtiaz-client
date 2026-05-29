@@ -27,7 +27,7 @@ const BACKEND_PROOF = [
   "Typed REST APIs",
   "JWT auth + validation",
   "Prisma migrations",
-  "Rate limiting",
+  "Rate limiting + tests",
   "Docker/Vercel deploys",
 ];
 
