@@ -78,7 +78,7 @@ export function Contact({ profile }: { profile: Profile }) {
                 rel="noopener noreferrer"
                 tilt
                 delay={0.08}
-                className="!p-5"
+                className="p-5!"
               >
                 <SectionLabel>GitHub</SectionLabel>
                 <p className="mt-2 text-sm">@Emtiaz-ahmed-13</p>
@@ -92,10 +92,10 @@ export function Contact({ profile }: { profile: Profile }) {
                 rel="noopener noreferrer"
                 tilt
                 delay={0.14}
-                className="!p-5"
+                className="p-5!"
               >
                 <SectionLabel>LinkedIn</SectionLabel>
-                <p className="mt-2 text-sm">in/emtiazahmed</p>
+                <p className="mt-2 text-sm">in/emtiaz-ahmed-2892871a2</p>
               </Card>
             )}
           </div>
