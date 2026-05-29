@@ -95,7 +95,7 @@ export function Contact({ profile }: { profile: Profile }) {
                 className="!p-5"
               >
                 <SectionLabel>LinkedIn</SectionLabel>
-                <p className="mt-2 break-all text-sm">{profile.linkedinUrl}</p>
+                <p className="mt-2 text-sm">emtiaz-ahmed</p>
               </Card>
             )}
           </div>

@@ -24,7 +24,7 @@ export function About({ profile }: { profile: Profile }) {
     profile.linkedinUrl && {
       label: "LinkedIn",
       href: profile.linkedinUrl,
-      value: profile.linkedinUrl,
+      value: "emtiaz-ahmed",
     },
     profile.websiteUrl && {
       label: "Web",

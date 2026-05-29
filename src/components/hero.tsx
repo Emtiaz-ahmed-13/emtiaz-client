@@ -181,7 +181,7 @@ function AvatarOrbit({
     profile.linkedinUrl && {
       icon: <Icon d={ICONS.linkedin} />,
       label: "LinkedIn",
-      value: profile.linkedinUrl,
+      value: "emtiaz-ahmed",
       href: profile.linkedinUrl,
     },
     profile.websiteUrl && {
