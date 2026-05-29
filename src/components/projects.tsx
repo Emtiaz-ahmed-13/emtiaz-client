@@ -14,10 +14,10 @@ const HOME_LIMIT = 3;
 
 const DELIVERY_SIGNALS = [
   "MVP shipped in 6 weeks",
-  "100+ PRs across two repos",
-  "Lighthouse 95+ verified",
-  "sub-200ms cached TTFB",
-  "zero production rollbacks",
+  "30 commits across portfolio repos",
+  "Lighthouse 89 / 96 / 100 / 100",
+  "FCP 1.8s · LCP 3.1s",
+  "7 API tests covering auth, validation, rate limits",
 ];
 
 const PERFORMANCE_PROOF_URL =

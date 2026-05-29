@@ -37,12 +37,24 @@ The site is designed to work well for both recruiters and technical reviewers:
 - **API:** https://emtiaz-server.vercel.app/api/v1/portfolio
 - **Backend repo:** https://github.com/Emtiaz-ahmed-13/emtiaz-server
 
+## Evidence Snapshot
+
+These are intentionally repo- or production-backed signals, not generic claims:
+
+| Signal | Evidence |
+|---|---|
+| Portfolio Git history | `18` commits in `emtiaz-client` + `12` commits in `emtiaz-server` |
+| Production surface | Frontend and API deployed as separate Vercel projects |
+| Lighthouse proof | Performance `89`, Accessibility `96`, Best Practices `100`, SEO `100` |
+| Web vitals from proof | First Contentful Paint `1.8s`, Largest Contentful Paint `3.1s` |
+| Backend quality proof | `7` API/middleware tests covering health, 404s, validation, auth, and rate limiting |
+
 ## Highlights
 
 - **API-driven portfolio data** via `GET /portfolio`
 - **Admin CMS** for blog posts and projects (`/admin`, `/admin/blog`, `/admin/projects`)
 - **Blog system** with home preview, full `/blog` archive, and `/blog/[slug]` detail pages
-- **Project archive** with home preview, full `/projects`, and `/projects/[slug]` case studies
+- **Project archive** with home preview, full `/projects`, and `/projects/[slug]` case studies with before/after, architecture, API contract, and scorecard proofs
 - **Live coding stats** from LeetCode, Codeforces, and CodeChef
 - **Image URL safety** for ImgBB share links and direct CDN images
 - **Graceful fallback data** from `src/lib/fallback-portfolio.json`

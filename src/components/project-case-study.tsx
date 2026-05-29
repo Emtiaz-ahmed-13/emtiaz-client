@@ -44,9 +44,9 @@ function getProjectProof(project: Project) {
   if (title.includes("purrfect")) {
     return [
       { label: "Timeline", value: "6 weeks" },
-      { label: "Performance", value: "95+ Lighthouse" },
+      { label: "Lighthouse", value: "89 / 96 / 100 / 100" },
       { label: "Backend", value: "Prisma + PostgreSQL" },
-      { label: "Outcome", value: "sub-200ms cached TTFB" },
+      { label: "Web vitals", value: "FCP 1.8s · LCP 3.1s" },
     ];
   }
 
@@ -103,11 +103,12 @@ function getCaseStudyVisuals(project: Project) {
         ["PATCH", "/api/v1/blog/:id", "Protected content update"],
       ],
       scores: [
-        ["Performance", "95+"],
-        ["Accessibility", "95+"],
-        ["Best Practices", "95+"],
-        ["SEO", "95+"],
+        ["Performance", "89"],
+        ["Accessibility", "96"],
+        ["Best Practices", "100"],
+        ["SEO", "100"],
       ],
+      vitals: "Measured Lighthouse proof: FCP 1.8s, LCP 3.1s.",
     };
   }
 
@@ -137,6 +138,7 @@ function getCaseStudyVisuals(project: Project) {
         ["Deploy", "Docker"],
         ["Data", "Prisma"],
       ],
+      vitals: null,
     };
   }
 
@@ -165,6 +167,7 @@ function getCaseStudyVisuals(project: Project) {
       ["API", "Typed"],
       ["Deploy", "Live"],
     ],
+    vitals: null,
   };
 }
 
@@ -418,6 +421,12 @@ export function ProjectCaseStudy({ project, prev, next }: Props) {
                 </div>
               ))}
             </div>
+
+            {visuals.vitals && (
+              <p className="mt-4 text-xs leading-relaxed text-muted-strong">
+                {visuals.vitals}
+              </p>
+            )}
 
             {project.title.toLowerCase().includes("purrfect") && (
               <a

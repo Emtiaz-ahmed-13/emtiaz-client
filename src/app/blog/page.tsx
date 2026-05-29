@@ -30,7 +30,7 @@ export default async function BlogIndexPage() {
 
   const sorted = [...posts].sort(
     (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
 
   const tags = Array.from(new Set(posts.flatMap((p) => p.tags))).slice(0, 12);
