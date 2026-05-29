@@ -15,7 +15,7 @@ const HOME_LIMIT = 3;
 const DELIVERY_SIGNALS = [
   "MVP shipped in 6 weeks",
   "100+ PRs across two repos",
-  "95+ Lighthouse verified",
+  "Lighthouse 95+ verified",
   "sub-200ms cached TTFB",
   "zero production rollbacks",
 ];

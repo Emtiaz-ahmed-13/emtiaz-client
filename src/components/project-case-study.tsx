@@ -10,8 +10,10 @@ import {
   Check,
   ChevronRight,
   ExternalLink,
+  Gauge,
   Layers,
   Lightbulb,
+  Route,
   Target,
   Trophy,
   UserRound,
@@ -74,6 +76,98 @@ function getProjectProof(project: Project) {
   ].filter(Boolean) as { label: string; value: string }[];
 }
 
+const LIGHTHOUSE_PROOF_URL =
+  "https://i.ibb.co/Qjc3Jp12/Screenshot-2026-05-29-at-3-11-17-PM.png";
+
+function getCaseStudyVisuals(project: Project) {
+  const title = project.title.toLowerCase();
+
+  if (title.includes("purrfect")) {
+    return {
+      before:
+        "Adoption discovery was scattered across Facebook posts, inbox messages, and manual spreadsheets.",
+      after:
+        "A structured marketplace with listings, applications, admin review, image upload, and documented state transitions.",
+      architecture: [
+        "Next.js App Router",
+        "Express REST API",
+        "JWT auth",
+        "Prisma service layer",
+        "PostgreSQL",
+        "ImgBB + Vercel",
+      ],
+      api: [
+        ["GET", "/api/v1/projects/slug/:slug", "Public case study data"],
+        ["POST", "/api/v1/contact", "Validated contact workflow"],
+        ["POST", "/api/v1/auth/login", "Admin authentication"],
+        ["PATCH", "/api/v1/blog/:id", "Protected content update"],
+      ],
+      scores: [
+        ["Performance", "95+"],
+        ["Accessibility", "95+"],
+        ["Best Practices", "95+"],
+        ["SEO", "95+"],
+      ],
+    };
+  }
+
+  if (title.includes("tradenest")) {
+    return {
+      before:
+        "A storefront needs many backend concerns before it can safely accept real orders.",
+      after:
+        "A documented NestJS API with auth, catalog, cart, orders, inventory, Swagger, Redis, and Docker-ready deployment.",
+      architecture: [
+        "NestJS modules",
+        "Better Auth",
+        "Prisma ORM",
+        "PostgreSQL",
+        "Redis",
+        "Swagger + Docker",
+      ],
+      api: [
+        ["POST", "/auth/login", "Issue session credentials"],
+        ["GET", "/products", "Catalog read model"],
+        ["POST", "/orders", "Transactional order flow"],
+        ["GET", "/docs", "Swagger contract"],
+      ],
+      scores: [
+        ["Security", "Rate limited"],
+        ["Docs", "Swagger"],
+        ["Deploy", "Docker"],
+        ["Data", "Prisma"],
+      ],
+    };
+  }
+
+  return {
+    before:
+      "The product started as a broad workflow with multiple roles, permissions, and delivery risks.",
+    after:
+      "A scoped full-stack system with typed APIs, role-aware UI, deployment boundaries, and clear operational tradeoffs.",
+    architecture: [
+      project.techStack[0] || "Frontend",
+      "Typed API",
+      "Auth boundary",
+      "Service layer",
+      "Database",
+      "Vercel deploy",
+    ],
+    api: [
+      ["GET", "/api/v1/portfolio", "Public portfolio payload"],
+      ["GET", "/api/v1/projects", "Project listing"],
+      ["GET", "/api/v1/blog", "Writing archive"],
+      ["POST", "/api/v1/contact", "Validated inbound lead"],
+    ],
+    scores: [
+      ["Delivery", "Shipped"],
+      ["Auth", "Protected"],
+      ["API", "Typed"],
+      ["Deploy", "Live"],
+    ],
+  };
+}
+
 type Props = {
   project: Project;
   prev?: { slug: string; title: string } | null;
@@ -83,6 +177,7 @@ type Props = {
 export function ProjectCaseStudy({ project, prev, next }: Props) {
   const hero = resolveImageUrl(project.imageUrl);
   const proof = getProjectProof(project);
+  const visuals = getCaseStudyVisuals(project);
   const screenshots = (project.screenshots ?? [])
     .map((s) => resolveImageUrl(s))
     .filter(Boolean) as string[];
@@ -224,6 +319,118 @@ export function ProjectCaseStudy({ project, prev, next }: Props) {
             ))}
           </section>
         )}
+
+        <section className="mt-10 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="rounded-2xl border border-border bg-card p-5">
+            <div className="flex items-center gap-3">
+              <span className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background">
+                <Route className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
+                  Before / After
+                </p>
+                <h2 className="mt-1 text-xl font-semibold tracking-[-0.02em]">
+                  Product clarity
+                </h2>
+              </div>
+            </div>
+
+            <div className="mt-5 grid gap-3">
+              <ProofPanel label="Before" value={visuals.before} />
+              <ProofPanel label="After" value={visuals.after} tone="strong" />
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card p-5">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
+                  Architecture
+                </p>
+                <h2 className="mt-1 text-xl font-semibold tracking-[-0.02em]">
+                  System flow
+                </h2>
+              </div>
+              <Badge variant="outline">Production shape</Badge>
+            </div>
+
+            <div className="mt-5 grid gap-2 sm:grid-cols-2">
+              {visuals.architecture.map((node, index) => (
+                <div
+                  key={node}
+                  className="flex items-center gap-3 rounded-xl border border-border bg-background/60 p-3"
+                >
+                  <span className="grid size-7 shrink-0 place-items-center rounded-full bg-foreground font-mono text-[10px] text-background">
+                    {index + 1}
+                  </span>
+                  <span className="text-sm font-medium">{node}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-4 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-2xl border border-border bg-card p-5">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
+              API contract
+            </p>
+            <div className="mt-4 overflow-hidden rounded-xl border border-border">
+              {visuals.api.map(([method, path, purpose]) => (
+                <div
+                  key={`${method}-${path}`}
+                  className="grid gap-2 border-b border-border bg-background/50 p-3 last:border-b-0 sm:grid-cols-[72px_1fr_1fr]"
+                >
+                  <span className="font-mono text-[11px] font-semibold text-foreground">
+                    {method}
+                  </span>
+                  <code className="text-xs text-muted-strong">{path}</code>
+                  <span className="text-xs text-muted-strong">{purpose}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card p-5">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
+                  Performance proof
+                </p>
+                <h2 className="mt-1 text-xl font-semibold tracking-[-0.02em]">
+                  Lighthouse scorecard
+                </h2>
+              </div>
+              <Gauge className="h-5 w-5 text-muted-strong" />
+            </div>
+
+            <div className="mt-5 grid grid-cols-2 gap-2">
+              {visuals.scores.map(([label, score]) => (
+                <div
+                  key={label}
+                  className="rounded-xl border border-border bg-background/60 p-3"
+                >
+                  <p className="font-mono text-[9px] uppercase tracking-widest text-muted">
+                    {label}
+                  </p>
+                  <p className="mt-1 text-lg font-semibold">{score}</p>
+                </div>
+              ))}
+            </div>
+
+            {project.title.toLowerCase().includes("purrfect") && (
+              <a
+                href={LIGHTHOUSE_PROOF_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex text-xs font-medium text-muted-strong transition hover:text-foreground"
+              >
+                View Lighthouse screenshot ↗
+              </a>
+            )}
+          </div>
+        </section>
 
         {/* Sections */}
         <div className="mt-20 space-y-20">
@@ -450,6 +657,31 @@ function MetaCard({
         {label}
       </p>
       <p className="mt-1 text-sm font-medium text-foreground">{value}</p>
+    </div>
+  );
+}
+
+function ProofPanel({
+  label,
+  value,
+  tone = "muted",
+}: {
+  label: string;
+  value: string;
+  tone?: "muted" | "strong";
+}) {
+  return (
+    <div className="rounded-xl border border-border bg-background/60 p-4">
+      <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
+        {label}
+      </p>
+      <p
+        className={`mt-2 text-sm leading-relaxed ${
+          tone === "strong" ? "text-foreground" : "text-muted-strong"
+        }`}
+      >
+        {value}
+      </p>
     </div>
   );
 }
