@@ -15,10 +15,13 @@ const HOME_LIMIT = 3;
 const DELIVERY_SIGNALS = [
   "MVP shipped in 6 weeks",
   "100+ PRs across two repos",
-  "95+ Lighthouse target",
+  "95+ Lighthouse verified",
   "sub-200ms cached TTFB",
   "zero production rollbacks",
 ];
+
+const PERFORMANCE_PROOF_URL =
+  "https://i.ibb.co/Qjc3Jp12/Screenshot-2026-05-29-at-3-11-17-PM.png";
 
 const BACKEND_PROOF = [
   "Typed REST APIs",
@@ -88,7 +91,17 @@ export function Projects({ projects }: { projects: Project[] }) {
         className="mb-8 grid gap-3 lg:grid-cols-[1.1fr_0.9fr]"
       >
         <div className="rounded-2xl border border-border bg-card/60 p-5">
-          <SectionLabel>Delivery proof</SectionLabel>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <SectionLabel>Delivery proof</SectionLabel>
+            <a
+              href={PERFORMANCE_PROOF_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[10px] uppercase tracking-widest text-muted-strong transition hover:text-foreground"
+            >
+              Lighthouse proof ↗
+            </a>
+          </div>
           <div className="mt-4 flex flex-wrap gap-2">
             {DELIVERY_SIGNALS.map((signal) => (
               <Badge key={signal} variant="outline">
