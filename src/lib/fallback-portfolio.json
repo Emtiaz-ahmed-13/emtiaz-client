@@ -1,8 +1,8 @@
 {
   "profile": {
     "id": "34d5930f-dc48-4a44-bfc0-45be3849547c",
-    "headline": "Full Stack Developer",
-    "bio": "I build modern web applications with TypeScript, React, Node.js, NestJS, and PostgreSQL. Passionate about clean APIs, scalable backends, and polished user experiences.",
+    "headline": "Full Stack Engineer",
+    "bio": "I ship reliable full-stack products with TypeScript, React, Node.js, and PostgreSQL: clear APIs, durable data models, and polished user flows.",
     "location": "Bangladesh",
     "resumeUrl": null,
     "avatarUrl": "https://i.ibb.co/wFmx4Rjp/pp2.jpg",
@@ -338,7 +338,7 @@
     {
       "id": "266514b0-027d-4c72-bd00-29e8b2552acd",
       "company": "Independent \u00b7 Self-employed",
-      "position": "Full Stack Developer",
+      "position": "Full Stack Engineer",
       "description": "Designing and shipping production-grade full-stack web apps end-to-end. Owned the full surface area \u2014 product scoping, system architecture, backend (Node.js, Express, NestJS, PostgreSQL, Prisma, MongoDB), frontend (Next.js, React, TypeScript, Tailwind), and Docker- / Vercel-based deployment.\n\nNotable builds:\n\u2022 PurrfectHub \u2014 adoption platform with multi-step applications.\n\u2022 SkillSync \u2014 freelancer \u2194 client collaboration hub with escrow + Kanban.\n\u2022 TradeNest \u2014 production-grade e-commerce backend API with Swagger docs, rate limiting, and security hardening.\n\u2022 EduMentor AI \u2014 led a 4-engineer team on a MERN-stack learning platform; owned architecture, API contract, JWT auth flow, PR review, and the Vercel pipeline. Shipped MVP in 6 weeks with 100+ PRs across two repos and zero production rollbacks.",
       "location": "Dhaka, Bangladesh",
       "startDate": "2024-01-01T00:00:00.000Z",

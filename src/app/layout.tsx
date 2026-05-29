@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Emtiaz Ahmed | Full Stack Developer",
+  title: "Emtiaz Ahmed | Full Stack Engineer",
   description:
-    "Portfolio of Emtiaz Ahmed, a full-stack developer from Bangladesh building modern web applications with TypeScript, React, Node.js, Express, Prisma, and PostgreSQL.",
+    "Portfolio of Emtiaz Ahmed, a full-stack engineer from Bangladesh shipping TypeScript, React, Node.js, Prisma, and PostgreSQL products.",
 };
 
 export default function RootLayout({

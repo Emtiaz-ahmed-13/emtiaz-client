@@ -12,10 +12,9 @@ const QUICK_LINKS = [
 ];
 
 const RESOURCES = [
-  { href: "/#highlights", label: "Wins & awards" },
-  { href: "/#journey", label: "Experience" },
   { href: "/#skills", label: "Tech stack" },
-  { href: "/#practice", label: "Coding profiles" },
+  { href: "/#projects", label: "Engineering proof" },
+  { href: "/projects", label: "Case studies" },
   { href: "/emtiaz.pdf", label: "Resume (PDF)", external: true },
 ];
 
@@ -272,13 +271,6 @@ export function Footer({
               <span className="text-muted-strong">Tailwind</span> ·{" "}
               <span className="text-muted-strong">Prisma</span>
             </p>
-            <Link
-              href="/admin/login"
-              className="link-underline font-mono text-[10px] uppercase tracking-widest text-muted hover:text-foreground"
-              title="Admin sign in"
-            >
-              Admin
-            </Link>
             <a
               href="#home"
               className="link-underline font-mono text-[10px] uppercase tracking-widest text-muted-strong hover:text-foreground"

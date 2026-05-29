@@ -36,6 +36,44 @@ function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+function getProjectProof(project: Project) {
+  const title = project.title.toLowerCase();
+
+  if (title.includes("purrfect")) {
+    return [
+      { label: "Timeline", value: "6 weeks" },
+      { label: "Performance", value: "95+ Lighthouse" },
+      { label: "Backend", value: "Prisma + PostgreSQL" },
+      { label: "Outcome", value: "sub-200ms cached TTFB" },
+    ];
+  }
+
+  if (title.includes("skillsync")) {
+    return [
+      { label: "Product", value: "Escrow + Kanban" },
+      { label: "Realtime", value: "Socket.io workflow" },
+      { label: "Auth", value: "Role-based access" },
+      { label: "Scope", value: "End-to-end build" },
+    ];
+  }
+
+  if (title.includes("tradenest")) {
+    return [
+      { label: "API", value: "Swagger documented" },
+      { label: "Security", value: "Rate limited" },
+      { label: "Reliability", value: "Redis-backed flows" },
+      { label: "Deploy", value: "Docker-ready" },
+    ];
+  }
+
+  return [
+    project.duration && { label: "Timeline", value: project.duration },
+    project.role && { label: "Role", value: project.role },
+    { label: "Status", value: project.liveUrl ? "Live" : "Documented" },
+    { label: "Stack", value: `${project.techStack.length} tools` },
+  ].filter(Boolean) as { label: string; value: string }[];
+}
+
 type Props = {
   project: Project;
   prev?: { slug: string; title: string } | null;
@@ -44,6 +82,7 @@ type Props = {
 
 export function ProjectCaseStudy({ project, prev, next }: Props) {
   const hero = resolveImageUrl(project.imageUrl);
+  const proof = getProjectProof(project);
   const screenshots = (project.screenshots ?? [])
     .map((s) => resolveImageUrl(s))
     .filter(Boolean) as string[];
@@ -130,7 +169,7 @@ export function ProjectCaseStudy({ project, prev, next }: Props) {
             }}
             className="relative mt-12 overflow-hidden rounded-2xl border border-border bg-card"
           >
-            <div className="relative aspect-[16/9] w-full bg-background">
+            <div className="relative aspect-video w-full bg-background">
               <Image
                 src={hero}
                 alt={project.title}
@@ -167,6 +206,24 @@ export function ProjectCaseStudy({ project, prev, next }: Props) {
             icon={<Trophy className="h-4 w-4" />}
           />
         </div>
+
+        {proof.length > 0 && (
+          <section className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {proof.map((item) => (
+              <div
+                key={`${item.label}-${item.value}`}
+                className="rounded-xl border border-border bg-card/70 p-4"
+              >
+                <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-sm font-medium text-foreground">
+                  {item.value}
+                </p>
+              </div>
+            ))}
+          </section>
+        )}
 
         {/* Sections */}
         <div className="mt-20 space-y-20">
@@ -293,7 +350,7 @@ export function ProjectCaseStudy({ project, prev, next }: Props) {
                 {screenshots.map((src) => (
                   <div
                     key={src}
-                    className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border bg-card"
+                    className="relative aspect-16/10 overflow-hidden rounded-xl border border-border bg-card"
                   >
                     <Image
                       src={src}

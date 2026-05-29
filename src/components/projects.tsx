@@ -12,6 +12,22 @@ import { Project } from "@/types/portfolio";
 
 const HOME_LIMIT = 3;
 
+const DELIVERY_SIGNALS = [
+  "MVP shipped in 6 weeks",
+  "100+ PRs across two repos",
+  "95+ Lighthouse target",
+  "sub-200ms cached TTFB",
+  "zero production rollbacks",
+];
+
+const BACKEND_PROOF = [
+  "Typed REST APIs",
+  "JWT auth + validation",
+  "Prisma migrations",
+  "Rate limiting",
+  "Docker/Vercel deploys",
+];
+
 export function Projects({ projects }: { projects: Project[] }) {
   const items = projects ?? [];
   const visible = items.slice(0, HOME_LIMIT);
@@ -24,7 +40,7 @@ export function Projects({ projects }: { projects: Project[] }) {
       <SectionHeading
         index="02 / Work"
         title="Selected projects."
-        subtitle={`${items.length} production-grade builds — full-stack systems, APIs, and product interfaces.`}
+        subtitle={`${items.length} shipped builds with real product flows, backend contracts, and deployment decisions.`}
         action={
           hasMore ? (
             <Link
@@ -62,6 +78,36 @@ export function Projects({ projects }: { projects: Project[] }) {
           {Array.from(new Set(items.flatMap((p) => p.techStack))).length}{" "}
           Technologies
         </Badge>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="mb-8 grid gap-3 lg:grid-cols-[1.1fr_0.9fr]"
+      >
+        <div className="rounded-2xl border border-border bg-card/60 p-5">
+          <SectionLabel>Delivery proof</SectionLabel>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {DELIVERY_SIGNALS.map((signal) => (
+              <Badge key={signal} variant="outline">
+                {signal}
+              </Badge>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-border bg-card/60 p-5">
+          <SectionLabel>Backend quality</SectionLabel>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {BACKEND_PROOF.map((proof) => (
+              <Badge key={proof} variant="muted">
+                {proof}
+              </Badge>
+            ))}
+          </div>
+        </div>
       </motion.div>
 
       <div className="grid gap-5 lg:grid-cols-2">

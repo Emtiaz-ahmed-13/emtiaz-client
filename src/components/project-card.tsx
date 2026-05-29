@@ -41,11 +41,11 @@ export function ProjectCard({ project, index, variant = "compact" }: Props) {
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const rotX = useSpring(useTransform(my, [-0.5, 0.5], [3, -3]), {
+  const rotX = useSpring(useTransform(my, [-0.5, 0.5], [1.5, -1.5]), {
     stiffness: 160,
     damping: 20,
   });
-  const rotY = useSpring(useTransform(mx, [-0.5, 0.5], [-3, 3]), {
+  const rotY = useSpring(useTransform(mx, [-0.5, 0.5], [-1.5, 1.5]), {
     stiffness: 160,
     damping: 20,
   });
@@ -61,6 +61,11 @@ export function ProjectCard({ project, index, variant = "compact" }: Props) {
   }
 
   const isSpotlight = variant === "spotlight";
+  const proofPoints = [
+    project.role && `Role: ${project.role}`,
+    project.duration && `Timeline: ${project.duration}`,
+    project.outcome && project.outcome.split(".")[0],
+  ].filter(Boolean) as string[];
 
   return (
     <motion.div
@@ -81,7 +86,7 @@ export function ProjectCard({ project, index, variant = "compact" }: Props) {
         transformStyle: "preserve-3d",
       }}
       className={cn(
-        "shimmer group relative overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-border-strong",
+        "group relative overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-border-strong",
         isSpotlight && "lg:col-span-2"
       )}
     >
@@ -99,8 +104,8 @@ export function ProjectCard({ project, index, variant = "compact" }: Props) {
           className={cn(
             "relative block overflow-hidden bg-background",
             isSpotlight
-              ? "aspect-[16/10] lg:aspect-auto lg:border-r lg:border-border"
-              : "aspect-[16/10] border-b border-border"
+              ? "aspect-16/10 lg:aspect-auto lg:border-r lg:border-border"
+              : "aspect-16/10 border-b border-border"
           )}
         >
           {src && !failed ? (
@@ -113,7 +118,7 @@ export function ProjectCard({ project, index, variant = "compact" }: Props) {
                   ? "(max-width: 1024px) 100vw, 60vw"
                   : "(max-width: 1024px) 100vw, 50vw"
               }
-              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+              className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
               onError={() => setFailed(true)}
               unoptimized
             />
@@ -125,7 +130,7 @@ export function ProjectCard({ project, index, variant = "compact" }: Props) {
             </div>
           )}
 
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-background/60 via-transparent to-transparent" />
 
           <div className="absolute left-4 top-4 flex items-center gap-2">
             <Badge variant="solid">
@@ -135,7 +140,7 @@ export function ProjectCard({ project, index, variant = "compact" }: Props) {
           </div>
 
           <div className="absolute right-4 top-4 flex items-center gap-1.5">
-            <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+            <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400" />
             <span className="font-mono text-[10px] uppercase tracking-wider text-muted-strong">
               Live
             </span>
@@ -183,6 +188,20 @@ export function ProjectCard({ project, index, variant = "compact" }: Props) {
               </Badge>
             )}
           </div>
+
+          {proofPoints.length > 0 && (
+            <ul className="mt-5 space-y-2 border-t border-border pt-5">
+              {proofPoints.slice(0, isSpotlight ? 3 : 2).map((point) => (
+                <li
+                  key={point}
+                  className="flex gap-2 text-sm leading-relaxed text-muted-strong"
+                >
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground/70" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          )}
 
           <div className="mt-7 flex flex-wrap items-center gap-2 border-t border-border pt-5">
             <Button asChild variant="default" size="sm">

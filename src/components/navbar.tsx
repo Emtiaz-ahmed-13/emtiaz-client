@@ -1,16 +1,12 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import Link from "next/link";
 import { useState } from "react";
 
 const links = [
   { href: "#about", label: "About" },
   { href: "#projects", label: "Work" },
-  { href: "#journey", label: "Journey" },
   { href: "#skills", label: "Stack" },
-  { href: "#practice", label: "Practice" },
-  { href: "#highlights", label: "Wins" },
   { href: "#blog", label: "Writing" },
   { href: "#contact", label: "Contact" },
 ];
@@ -45,7 +41,7 @@ export function Navbar({ name }: { name: string }) {
           <div className="hidden sm:block">
             <p className="text-base font-semibold tracking-tight">{name}</p>
             <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
-              Full Stack Developer
+              Full Stack Engineer
             </p>
           </div>
         </a>
@@ -64,28 +60,6 @@ export function Navbar({ name }: { name: string }) {
         </ul>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Link
-            href="/admin/login"
-            className="group grid size-10 place-items-center rounded-full border border-border bg-card text-muted-strong transition hover:border-border-strong hover:bg-background hover:text-foreground"
-            title="Admin sign in"
-            aria-label="Admin sign in"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect x="3" y="11" width="18" height="11" rx="2" />
-              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-            </svg>
-          </Link>
-
           <div className="flex items-center overflow-hidden rounded-full border border-border bg-card">
             <a
               href={RESUME_URL}
@@ -181,26 +155,6 @@ export function Navbar({ name }: { name: string }) {
             >
               Download
             </a>
-          </li>
-          <li className="mt-2">
-            <Link
-              href="/admin/login"
-              onClick={() => setOpen(false)}
-              className="flex items-center justify-center gap-2 rounded-lg border border-border bg-card py-2.5 font-mono text-[11px] uppercase tracking-widest text-muted-strong"
-            >
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <rect x="3" y="11" width="18" height="11" rx="2" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-              </svg>
-              Admin sign in
-            </Link>
           </li>
         </motion.ul>
       )}
