@@ -509,6 +509,22 @@
   ],
   "posts": [
     {
+      "id": "p-8",
+      "title": "How I Debugged a Prisma/Vercel Production DB Mismatch",
+      "slug": "debugging-prisma-vercel-production-db-mismatch",
+      "excerpt": "A real production debugging story: Prisma worked locally, Vercel failed, and the root cause was a migration/schema mismatch hiding behind one innocent query.",
+      "content": "## The symptom\n\nThe first clue was a production-only Prisma error around the blog list query. Locally the feature worked, but the deployed API failed when filtering posts by tag.\n\n```ts\nif (query.tag) where.tags = { has: query.tag };\n\nconst [data, total] = await Promise.all([\n  prisma.blogPost.findMany({ where }),\n  prisma.blogPost.count({ where }),\n]);\n```\n\nAt first glance, the query looked correct. `tags` was supposed to be a `String[]`, and Prisma supports `has` for Postgres array fields.\n\n## What I checked first\n\nI did not start by changing the query. The better debugging path was to verify each layer that could disagree with the others.\n\n- Does `schema.prisma` define `BlogPost` correctly?\n- Does the generated Prisma client know about `BlogPost.tags`?\n- Does the production database actually have the `blog_posts` table?\n- Does that table actually have a `tags` array column?\n- Is Vercel using the same `DATABASE_URL` that I think it is using?\n\n## The root cause\n\nThe Prisma schema had moved forward, but the initial migration file had not. The app expected a `blog_posts` table with `tags TEXT[]`, but the database that Vercel was connected to was missing part of that shape.\n\nThat explains why the query failed only in production: the TypeScript and Prisma client were valid, but the production database contract was stale.\n\n## The fix\n\nI regenerated the migration from the current Prisma schema instead of manually editing random SQL by hand.\n\n```bash\nnpx prisma migrate diff \\\n  --from-empty \\\n  --to-schema prisma/schema.prisma \\\n  --script\n```\n\nThen I synced the production database carefully. I used a schema push for the deployed DB and avoided a full seed reset because there was already live portfolio content there.\n\n```bash\nDATABASE_URL=\"<production-url>\" npx prisma db push\n```\n\nFor content fixes like LinkedIn URL, avatar, and blog/project copy, I used targeted Prisma updates instead of wiping production data.\n\n## Why the bug was easy to miss\n\nThis class of bug is dangerous because the code can look completely correct. The failure is not in the service function. It is in the contract between three moving pieces:\n\n- `schema.prisma`\n- migration SQL\n- the actual production database\n\nIf those three disagree, Prisma errors can show up in a place that only appears related to the real problem.\n\n## What I changed after fixing it\n\nThe fix was not only database sync. I also added guardrails so the same class of issue is easier to catch next time.\n\n- Regenerated the initial migration to match the current schema.\n- Verified production API responses after the database sync.\n- Added backend tests for validation, auth, 404 responses, and rate limiting.\n- Documented rate limits and test commands in the API README.\n- Kept fallback portfolio data aligned with production data.\n\n## Lesson\n\nWhen Prisma fails in production but works locally, do not only stare at the query. Check the real database shape. The code, generated client, migration history, and deployed database must all describe the same contract.",
+      "coverUrl": null,
+      "tags": ["Prisma", "Vercel", "PostgreSQL", "Debugging"],
+      "readMinutes": 8,
+      "publishedAt": "2026-05-30T00:00:00.000Z",
+      "status": "PUBLISHED",
+      "featured": true,
+      "order": 0,
+      "createdAt": "2026-05-30T00:00:00.000Z",
+      "updatedAt": "2026-05-30T00:00:00.000Z"
+    },
+    {
       "id": "p-1",
       "title": "Shipping PurrfectHub's MVP in 6 weeks",
       "slug": "shipping-purrfecthub-mvp-in-6-weeks",
