@@ -21,7 +21,7 @@ const FALLBACK_PORTFOLIO = fallbackData as unknown as PortfolioData;
 // Profile fields the live backend doesn't always populate yet (e.g. before re-seed).
 // Merged on top of whatever the API returns so the UI always has these.
 const PROFILE_DEFAULTS: Partial<Profile> = {
-  avatarUrl: "https://i.ibb.co/JW5D3rdH/p.jpg",
+  avatarUrl: "https://i.ibb.co/wFmx4Rjp/pp2.jpg",
   websiteUrl: "https://emtiaz-client.vercel.app/",
 };
 
