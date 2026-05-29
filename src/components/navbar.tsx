@@ -5,14 +5,14 @@ import Link from "next/link";
 import { useState } from "react";
 
 const links = [
-  { href: "#about", label: "About", index: "01" },
-  { href: "#projects", label: "Work", index: "02" },
-  { href: "#journey", label: "Journey", index: "03" },
-  { href: "#skills", label: "Stack", index: "04" },
-  { href: "#practice", label: "Practice", index: "05" },
-  { href: "#highlights", label: "Wins", index: "06" },
-  { href: "#blog", label: "Writing", index: "07" },
-  { href: "#contact", label: "Contact", index: "08" },
+  { href: "#about", label: "About" },
+  { href: "#projects", label: "Work" },
+  { href: "#journey", label: "Journey" },
+  { href: "#skills", label: "Stack" },
+  { href: "#practice", label: "Practice" },
+  { href: "#highlights", label: "Wins" },
+  { href: "#blog", label: "Writing" },
+  { href: "#contact", label: "Contact" },
 ];
 
 const RESUME_URL = "/emtiaz.pdf";
@@ -20,7 +20,11 @@ const RESUME_URL = "/emtiaz.pdf";
 export function Navbar({ name }: { name: string }) {
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
-  const bg = useTransform(scrollY, [0, 80], ["rgba(0,0,0,0)", "rgba(0,0,0,0.78)"]);
+  const bg = useTransform(
+    scrollY,
+    [0, 80],
+    ["rgba(0,0,0,0)", "rgba(0,0,0,0.78)"],
+  );
   const borderOpacity = useTransform(scrollY, [0, 80], [0, 1]);
 
   return (
@@ -41,7 +45,7 @@ export function Navbar({ name }: { name: string }) {
           <div className="hidden sm:block">
             <p className="text-base font-semibold tracking-tight">{name}</p>
             <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
-              Full Stack Engineer
+              Full Stack Developer
             </p>
           </div>
         </a>
@@ -51,11 +55,8 @@ export function Navbar({ name }: { name: string }) {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="group flex items-center gap-1.5 rounded-lg px-3 py-2.5 text-[14px] text-muted-strong transition hover:bg-card hover:text-foreground lg:gap-2 lg:px-3.5"
+                className="rounded-lg px-2.5 py-2.5 text-[13px] font-medium text-muted-strong transition hover:bg-card hover:text-foreground lg:px-3.5 lg:text-[14px]"
               >
-                <span className="font-mono text-[10px] text-muted">
-                  {link.index}
-                </span>
                 {link.label}
               </a>
             </li>
@@ -126,7 +127,10 @@ export function Navbar({ name }: { name: string }) {
             className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-[13px] font-medium text-background transition hover:gap-3"
           >
             Let&apos;s talk
-            <span aria-hidden className="transition group-hover:translate-x-0.5">
+            <span
+              aria-hidden
+              className="transition group-hover:translate-x-0.5"
+            >
               →
             </span>
           </a>
@@ -153,11 +157,8 @@ export function Navbar({ name }: { name: string }) {
               <a
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 py-3 text-sm"
+                className="block rounded-lg py-3 text-sm font-medium text-muted-strong transition hover:bg-background/60 hover:text-foreground"
               >
-                <span className="font-mono text-[10px] text-muted">
-                  {link.index}
-                </span>
                 {link.label}
               </a>
             </li>

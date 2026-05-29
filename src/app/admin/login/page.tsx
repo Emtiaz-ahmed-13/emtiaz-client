@@ -2,12 +2,27 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
+import {
+  FormEvent,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { ADMIN_EMAIL, login, pingApi, useAuth } from "@/lib/auth";
 
 type ApiStatus = "checking" | "online" | "offline";
 
 export default function AdminLoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <AdminLoginContent />
+    </Suspense>
+  );
+}
+
+function AdminLoginContent() {
   const router = useRouter();
   const search = useSearchParams();
   const next = search.get("next") || "/admin";

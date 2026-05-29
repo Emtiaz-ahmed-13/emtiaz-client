@@ -228,14 +228,22 @@ function AvatarOrbit({
             <div className="h-full w-full rounded-full bg-background" />
           </div>
 
-          <div className="absolute inset-[3px] overflow-hidden rounded-full">
+          <div className="absolute inset-[3px] overflow-hidden rounded-full bg-zinc-950">
             <Image
               src={src}
               alt={name}
               fill
               priority
               sizes="(max-width: 640px) 160px, (max-width: 1024px) 192px, 256px"
-              className="object-cover object-center"
+              className="scale-[1.03] object-cover object-center saturate-[1.05]"
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,transparent_36%,rgba(0,0,0,0.5)_100%)]"
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-linear-to-b from-white/8 via-transparent to-black/20"
             />
           </div>
 
@@ -393,7 +401,7 @@ export function Hero({ profile, name }: { profile: Profile; name: string }) {
               </a>
               <a
                 href="#contact"
-                className="link-underline text-sm text-muted-strong hover:text-foreground"
+                className="inline-flex items-center rounded-full border border-border bg-card/80 px-5 py-3 text-sm font-semibold text-foreground transition hover:border-border-strong hover:bg-background"
               >
                 Get in touch
               </a>
@@ -416,6 +424,14 @@ export function Hero({ profile, name }: { profile: Profile; name: string }) {
         >
           <span className="h-px w-10 bg-border-strong" />
           Scroll to explore
+          <motion.span
+            aria-hidden
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+            className="text-muted-strong"
+          >
+            ↓
+          </motion.span>
         </motion.div>
       </motion.div>
     </section>
