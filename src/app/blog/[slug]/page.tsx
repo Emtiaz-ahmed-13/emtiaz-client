@@ -43,7 +43,7 @@ export async function generateMetadata({
   };
 }
 
-// Tiny markdown renderer for `## heading`, `**bold**`, `` `code` ``, paragraphs.
+// Tiny markdown renderer for headings, lists, fenced code, **bold**, and `code`.
 // Enough for hand-written posts; swap in a real parser later if needed.
 function renderInline(line: string): React.ReactNode {
   const parts: React.ReactNode[] = [];
@@ -80,6 +80,36 @@ function renderMarkdown(content: string) {
   const blocks = content.split(/\n\s*\n/);
   return blocks.map((raw, i) => {
     const trimmed = raw.trim();
+    if (trimmed.startsWith("```")) {
+      const lines = trimmed.split("\n");
+      const language = lines[0].replace("```", "").trim();
+      const code = lines.slice(1, lines.at(-1)?.startsWith("```") ? -1 : undefined).join("\n");
+
+      return (
+        <div
+          key={i}
+          className="mt-6 overflow-hidden rounded-2xl border border-border bg-zinc-950"
+        >
+          {language && (
+            <div className="border-b border-white/10 px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-zinc-400">
+              {language}
+            </div>
+          )}
+          <pre className="overflow-x-auto p-4 text-sm leading-relaxed text-zinc-100">
+            <code>{code}</code>
+          </pre>
+        </div>
+      );
+    }
+    if (trimmed.split("\n").every((line) => line.trim().startsWith("- "))) {
+      return (
+        <ul key={i} className="mt-5 list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-muted-strong sm:text-base">
+          {trimmed.split("\n").map((line) => (
+            <li key={line}>{renderInline(line.trim().slice(2))}</li>
+          ))}
+        </ul>
+      );
+    }
     if (trimmed.startsWith("## ")) {
       return (
         <h2
